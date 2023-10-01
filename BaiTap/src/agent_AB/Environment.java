@@ -37,11 +37,11 @@ public class Environment {
         }
 
         if(action.equals(MOVE_LEFT)){
-            this.envState.setAgentLocation(LOCATION_B);
+            this.envState.setAgentLocation(LOCATION_A);
         }
 
         if(action.equals(MOVE_RIGHT)){
-            this.envState.setAgentLocation(LOCATION_A);
+            this.envState.setAgentLocation(LOCATION_B);
         }
 
         return envState;

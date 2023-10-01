@@ -6,8 +6,7 @@ public class AgentProgram {
         if (p.getLocationState().equals(Environment.LocationState.DIRTY)) {
             return Environment.SUCK_DIRT;
         }
-
-        if (p.getLocationState().equals(Environment.LOCATION_A)) {
+        if (p.getAgentLocation().equals(Environment.LOCATION_A)) {
             return Environment.MOVE_RIGHT;
         }
 
