@@ -17,4 +17,12 @@ public class Agent {
 
         return NoOpAction.NO_OP;
     }
+
+    public void convertMatrixStateToGraph(Environment.LocationState[][] matrixState) {
+        program.convertMatrixStateToGraph(matrixState);
+    }
+
+    public boolean isDone(){
+        return program.isDone();
+    }
 }

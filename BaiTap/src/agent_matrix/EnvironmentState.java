@@ -23,6 +23,9 @@ public class EnvironmentState {
     public LocationState getLocationState(Location location) {
         return this.matrixState[location.getRow()][location.getCol()];
     }
+    public LocationState[][] getMatrixState() {
+        return matrixState;
+    }
 
     public void setLocationState(Location location, LocationState locationState) {
         this.matrixState[location.getRow()][location.getCol()] = locationState;
@@ -57,15 +60,28 @@ public class EnvironmentState {
      *
      * @return the EnvironmentState is clean return true else false
      */
-    public boolean isDone() {
-        for (LocationState[] row : this.matrixState) {
-            for (LocationState cell : row) {
-                if (cell.equals(LocationState.DIRTY)) {
-                    return false;
-                }
-            }
-        }
+    public int getRowCount() {
+        return this.matrixState.length;
+    }
 
-        return true;
+    public int getColumnCount() {
+        return this.matrixState[0].length;
+    }
+
+    /**
+     * check this Location is OBSTACLE
+     * @param location
+     * @return true if this Location is OBSTACLE else false
+     */
+    public boolean isObstacleLocation(Location location) {
+        return this.matrixState[location.getRow()][location.getCol()].equals(LocationState.OBSTACLES);
+    }
+
+    public boolean isDirtyLocation(Location location) {
+        return this.matrixState[location.getRow()][location.getCol()].equals(LocationState.DIRTY);
+    }
+
+    public boolean isAgentLocation(Location location) {
+        return this.agentLocation.equals(location);
     }
 }
