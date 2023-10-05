@@ -2,6 +2,7 @@ package agent_matrix;
 
 public class Agent {
     private AgentProgram program;
+    private int score;
 
     public Agent() {
     }
@@ -12,6 +13,17 @@ public class Agent {
 
     public Action execute(Percept p) {
         if (program != null) {
+            Action action = program.execute(p);
+            if (action.equals(Environment.SUCK_DIRT)) {
+                score += 500;
+            } else {
+                if (action.equals(Environment.NO_OP_ACTION)) {
+                    score -= 100;
+                } else {
+                    score -= 10;
+                }
+            }
+
             return program.execute(p);
         }
 
@@ -22,7 +34,11 @@ public class Agent {
         program.convertMatrixStateToGraph(matrixState);
     }
 
-    public boolean isDone(){
+    public boolean isDone() {
         return program.isDone();
+    }
+
+    public int getScore(){
+        return score;
     }
 }

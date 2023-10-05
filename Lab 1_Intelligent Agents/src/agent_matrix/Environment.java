@@ -9,11 +9,10 @@ public class Environment {
             MOVE_RIGHT = new DynamicAction("RIGHT"),
             MOVE_UP = new DynamicAction("UP"),
             MOVE_DOWN = new DynamicAction("DOWN"),
-            SUCK_DIRT = new DynamicAction("SUCK");
+            SUCK_DIRT = new DynamicAction("SUCK"),
+            NO_OP_ACTION = NoOpAction.NO_OP;
 
     public static final double DIRT_RATE = 0.5, WALL_RATE = 0.2;
-
-    private int score = 0;
 
     public enum LocationState {
         CLEAN, DIRTY, OBSTACLES;
@@ -109,9 +108,12 @@ public class Environment {
 
     // Update enviroment state when agent do an action
     public EnvironmentState executeAction(Action action) {
+        if(action.equals(NO_OP_ACTION)){
+            isDone = true;
+        }
+
         if (action.equals(SUCK_DIRT)) {
             this.envState.setLocationState(this.envState.getAgentLocation(), LocationState.CLEAN);
-
         }
 
         Location currentLocation = envState.getAgentLocation();
@@ -178,5 +180,9 @@ public class Environment {
 
     public boolean isDone() {
         return this.agent.isDone();
+    }
+
+    public int getScore() {
+        return this.agent.getScore();
     }
 }

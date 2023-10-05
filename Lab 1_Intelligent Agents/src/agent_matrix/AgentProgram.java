@@ -44,7 +44,6 @@ public class AgentProgram {
         LinkedList<Integer> path = graph.getPathFromProcedureFloyd(cellSource + 1, cellDest + 1);
         Location moveToLocation = graph.getLocationFromCell(path.get(path.size() - 2));
 
-
         if (p.getAgentLocation().getRow() == moveToLocation.getRow()) {
             if (p.getAgentLocation().getCol() + 1 == moveToLocation.getCol()) {
                 return Environment.MOVE_RIGHT;
@@ -53,12 +52,17 @@ public class AgentProgram {
             return Environment.MOVE_LEFT;
         }
 
-        if (p.getAgentLocation().getRow() + 1 == moveToLocation.getRow()) {
-            return Environment.MOVE_DOWN;
+        if(p.getAgentLocation().getCol() == moveToLocation.getCol()) {
+            if (p.getAgentLocation().getRow() + 1 == moveToLocation.getRow()) {
+                return Environment.MOVE_DOWN;
+            }
+
+            return Environment.MOVE_UP;
         }
 
 
-        return Environment.MOVE_UP;
+
+        return Environment.NO_OP_ACTION;
     }
 
     public Location getLocationHaveMinDistanceToDirty(Location currentLocation){

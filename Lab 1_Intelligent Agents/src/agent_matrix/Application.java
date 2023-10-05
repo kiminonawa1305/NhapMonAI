@@ -17,6 +17,7 @@ public class Application extends JFrame {
     private JPanel panelDisplay;
 
     private Environment environment;
+    private JLabel score;
 
     public Application(Environment environment) {
         this.environment = environment;
@@ -43,13 +44,14 @@ public class Application extends JFrame {
         }
         this.getContentPane().add(panelDisplay, BorderLayout.CENTER);
 
+        JPanel panelSouth = new JPanel(new BorderLayout());
+
         JButton action = new JButton("Action");
-        action.setPreferredSize(new Dimension(SIZE_CELL * columnCount, 50));
+        action.setPreferredSize(new Dimension(SIZE_CELL * (columnCount-1), 50));
         action.addActionListener(e -> {
             Timer timer = new Timer(1000, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println("Running action");
                     Action anAction = environment.step();
                     display(anAction);
 
@@ -61,13 +63,21 @@ public class Application extends JFrame {
 
             timer.start();
         });
-        this.getContentPane().add(action, BorderLayout.SOUTH);
+        panelSouth.add(action,BorderLayout.EAST);
+
+        score = new JLabel("Score: 0");
+        panelSouth.add(score,BorderLayout.WEST);
+
+
+        this.getContentPane().add(panelSouth, BorderLayout.SOUTH);
 
         this.pack();
         this.setLocationRelativeTo(null);
     }
 
     public void display(Action anAction) {
+        score.setText("Score: " + environment.getScore());
+
         Location agentLocation = environment.getEnvState().getAgentLocation();
         int row = agentLocation.getRow();
         int column = agentLocation.getCol();
