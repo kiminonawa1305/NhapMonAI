@@ -1,13 +1,11 @@
 package k21.task1;
 
-import k21.task2.Node;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class BreadthFirstSearchAlgo extends ASearchAlgo {
-    private Queue<k21.task2.Node> queue;
+    private Queue<Node> queue;
 
     public BreadthFirstSearchAlgo() {
         queue = new LinkedList<>();
@@ -15,17 +13,17 @@ public class BreadthFirstSearchAlgo extends ASearchAlgo {
     }
 
     @Override
-    public k21.task2.Node execute(k21.task2.Node root, String goal) {
+    public Node execute(Node root, String goal) {
         if (root.getLabel().equals(goal)) {
             return root;
         }
 
-        k21.task2.Node temp = root;
+        Node temp = root;
         queue.add(root);
         while (!queue.isEmpty()) {
             temp = queue.poll();
             listNodeVisites.add(temp);
-            for (k21.task2.Node child : temp.getChildrenNodes()) {
+            for (Node child : temp.getChildrenNodes()) {
                 if(!this.listNodeVisites.contains(child) && !this.queue.contains(child)){
                     queue.add(child);
                     child.setParent(temp);
@@ -41,7 +39,7 @@ public class BreadthFirstSearchAlgo extends ASearchAlgo {
     }
 
     @Override
-    public k21.task2.Node execute(Node root, String start, String goal) {
+    public Node execute(Node root, String start, String goal) {
         return null;
     }
 }
