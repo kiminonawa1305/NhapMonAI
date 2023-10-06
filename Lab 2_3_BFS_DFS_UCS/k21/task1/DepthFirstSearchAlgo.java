@@ -7,8 +7,6 @@ public class DepthFirstSearchAlgo extends ASearchAlgo {
     private Stack<Node> stack;
 
     public DepthFirstSearchAlgo() {
-        stack = new Stack<Node>();
-        this.listNodeVisited = new ArrayList<Node>();
     }
 
     @Override
@@ -17,8 +15,10 @@ public class DepthFirstSearchAlgo extends ASearchAlgo {
             return root;
         }
 
-        Node temp = root;
+        Node temp;
         stack.add(root);
+        stack = new Stack<Node>();
+        this.listNodeVisited = new ArrayList<Node>();
         a:
         while (!stack.isEmpty()) {
             temp = stack.peek();
