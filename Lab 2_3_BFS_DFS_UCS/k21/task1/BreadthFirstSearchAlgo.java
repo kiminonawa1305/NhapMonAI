@@ -17,8 +17,8 @@ public class BreadthFirstSearchAlgo extends ASearchAlgo {
         }
 
         Node temp;
-        queue.add(root);
         queue = new LinkedList<>();
+        queue.add(root);
         this.listNodeVisited = new ArrayList<>();
         while (!queue.isEmpty()) {
             temp = queue.poll();

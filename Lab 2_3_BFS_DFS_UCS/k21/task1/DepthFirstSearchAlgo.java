@@ -16,8 +16,8 @@ public class DepthFirstSearchAlgo extends ASearchAlgo {
         }
 
         Node temp;
-        stack.add(root);
         stack = new Stack<Node>();
+        stack.add(root);
         this.listNodeVisited = new ArrayList<Node>();
         a:
         while (!stack.isEmpty()) {
