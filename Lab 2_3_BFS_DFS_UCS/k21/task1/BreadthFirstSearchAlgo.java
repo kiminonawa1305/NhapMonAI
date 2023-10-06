@@ -9,7 +9,7 @@ public class BreadthFirstSearchAlgo extends ASearchAlgo {
 
     public BreadthFirstSearchAlgo() {
         queue = new LinkedList<>();
-        this.listNodeVisites = new ArrayList<>();
+        this.listNodeVisited = new ArrayList<>();
     }
 
     @Override
@@ -22,16 +22,16 @@ public class BreadthFirstSearchAlgo extends ASearchAlgo {
         queue.add(root);
         while (!queue.isEmpty()) {
             temp = queue.poll();
-            listNodeVisites.add(temp);
+            if (temp.getLabel().equals(goal)) {
+                return temp;
+            }
+
+            listNodeVisited.add(temp);
             for (Node child : temp.getChildrenNodes()) {
-                if(!this.listNodeVisites.contains(child) && !this.queue.contains(child)){
+                if(!this.listNodeVisited.contains(child) && !this.queue.contains(child)){
                     queue.add(child);
                     child.setParent(temp);
                     child.setDepth(temp.getDepth() + 1);
-                }
-
-                if (child.getLabel().equals(goal)) {
-                    return child;
                 }
             }
         }

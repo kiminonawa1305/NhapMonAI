@@ -8,7 +8,7 @@ public class DepthFirstSearchAlgo extends ASearchAlgo {
 
     public DepthFirstSearchAlgo() {
         stack = new Stack<Node>();
-        this.listNodeVisites = new ArrayList<Node>();
+        this.listNodeVisited = new ArrayList<Node>();
     }
 
     @Override
@@ -22,17 +22,17 @@ public class DepthFirstSearchAlgo extends ASearchAlgo {
         a:
         while (!stack.isEmpty()) {
             temp = stack.peek();
-            listNodeVisites.add(temp);
+            if (temp.getLabel().equals(goal)) {
+                return temp;
+            }
+
+            listNodeVisited.add(temp);
             for (Node child : temp.getChildrenNodes()) {
-                if (!listNodeVisites.contains(child) && !this.stack.contains(child)) {
+                if (!listNodeVisited.contains(child) && !this.stack.contains(child)) {
                     stack.add(child);
                     child.setParent(temp);
                     child.setDepth(temp.getDepth() + 1);
                     continue a;
-                }
-
-                if (child.getLabel().equals(goal)) {
-                    return child;
                 }
 
             }
