@@ -7,18 +7,18 @@ public class DepthFirstSearchAlgo extends ASearchAlgo {
     private Stack<Node> stack;
 
     public DepthFirstSearchAlgo() {
-        stack = new Stack<Node>();
-        this.listNodeVisited = new ArrayList<Node>();
     }
 
     @Override
     public Node execute(Node root, String goal) {
-        if (root.getLabel().equals("goal")) {
+        if (root.getLabel().equals(goal)) {
             return root;
         }
 
-        Node temp = root;
+        Node temp;
+        stack = new Stack<Node>();
         stack.add(root);
+        this.listNodeVisited = new ArrayList<Node>();
         a:
         while (!stack.isEmpty()) {
             temp = stack.peek();
@@ -39,11 +39,14 @@ public class DepthFirstSearchAlgo extends ASearchAlgo {
             stack.pop();
         }
 
+        System.out.println("end code");
         return null;
     }
 
     @Override
     public Node execute(Node root, String start, String goal) {
-        return null;
+        Node nodeStart = execute(root, start);
+        nodeStart.setParent(null);
+        return execute(nodeStart, goal);
     }
 }

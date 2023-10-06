@@ -24,7 +24,7 @@ public class TestSearchAlgo {
         nodeF.addEdge(nodeG, 1);
 
         ISearchAlgo algo1 = new BreadthFirstSearchAlgo();
-        Node result = algo1.execute(nodeS, "G");
+        Node result = algo1.execute(nodeS, "C", "G");
         System.out.println(NodeUtils.printPath(result));
     }
 }

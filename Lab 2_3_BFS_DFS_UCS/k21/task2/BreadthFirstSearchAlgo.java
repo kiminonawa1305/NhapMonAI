@@ -8,8 +8,6 @@ public class BreadthFirstSearchAlgo extends ASearchAlgo {
     private Queue<Node> queue;
 
     public BreadthFirstSearchAlgo() {
-        queue = new LinkedList<>();
-        this.listNodeVisited = new ArrayList<>();
     }
 
     @Override
@@ -18,8 +16,10 @@ public class BreadthFirstSearchAlgo extends ASearchAlgo {
             return root;
         }
 
-        Node temp = root;
+        Node temp;
+        queue = new LinkedList<>();
         queue.add(root);
+        this.listNodeVisited = new ArrayList<>();
         while (!queue.isEmpty()) {
             temp = queue.poll();
             if (temp.getLabel().equals(goal)) {
@@ -35,11 +35,14 @@ public class BreadthFirstSearchAlgo extends ASearchAlgo {
                 }
             }
         }
+
         return null;
     }
 
     @Override
     public Node execute(Node root, String start, String goal) {
-        return null;
+        Node nodeStart = execute(root, start);
+        nodeStart.setParent(null);
+        return execute(nodeStart, goal);
     }
 }
