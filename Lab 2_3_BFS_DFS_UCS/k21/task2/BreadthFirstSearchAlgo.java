@@ -12,10 +12,6 @@ public class BreadthFirstSearchAlgo extends ASearchAlgo {
 
     @Override
     public Node execute(Node root, String goal) {
-        if (root.getLabel().equals(goal)) {
-            return root;
-        }
-
         Node temp;
         queue = new LinkedList<>();
         queue.add(root);
@@ -25,8 +21,8 @@ public class BreadthFirstSearchAlgo extends ASearchAlgo {
             if (temp.getLabel().equals(goal)) {
                 return temp;
             }
-
             listNodeVisited.add(temp);
+
             for (Node child : temp.getChildrenNodes()) {
                 if(!this.listNodeVisited.contains(child) && !this.queue.contains(child)){
                     queue.add(child);
