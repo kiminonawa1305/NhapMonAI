@@ -11,10 +11,6 @@ public class DepthFirstSearchAlgo extends ASearchAlgo {
 
     @Override
     public Node execute(Node root, String goal) {
-        if (root.getLabel().equals("goal")) {
-            return root;
-        }
-
         Node temp;
         stack = new Stack<Node>();
         stack.add(root);
@@ -25,8 +21,8 @@ public class DepthFirstSearchAlgo extends ASearchAlgo {
             if (temp.getLabel().equals(goal)) {
                 return temp;
             }
-
             listNodeVisited.add(temp);
+
             for (Node child : temp.getChildrenNodes()) {
                 if (!listNodeVisited.contains(child) && !this.stack.contains(child)) {
                     stack.add(child);
