@@ -1,4 +1,4 @@
-package k21.task2;
+package k21.task3;
 
 public class TestSearchAlgo {
     public static void main(String[] args) {
