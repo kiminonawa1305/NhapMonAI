@@ -1,4 +1,4 @@
-package k21.task5;
+package k21.task5_graph;
 
 import java.util.PriorityQueue;
 
@@ -17,23 +17,29 @@ public class UniformCostSearchAlgo implements ISearchAlgo {
             }
 
             for (Edge child : current.getChildren()) {
-                Node nodeChild = null;
-                try {
-                    nodeChild = (Node) child.getEnd().clone();
-                } catch (CloneNotSupportedException e) {
-                    throw new RuntimeException(e);
+                Node nodeChild = child.getEnd();
+                double pathCost = current.getPathCost() + child.getWeight();
+                if (priorityQueue.contains(nodeChild) && pathCost > getPastCost(priorityQueue, nodeChild)) {
+                    continue;
                 }
-                child.setEnd(nodeChild);
-                nodeChild.setPathCost(current.getPathCost() + child.getWeight());
-                System.out.println(child.getEnd().getLabel() + ": (" + current.getLabel() + "=" + current.getPathCost() + "+" + child.getEnd().getLabel() + "=" + child.getWeight() + ")=" + child.getEnd().getPathCost());
-                priorityQueue.add(child.getEnd());
-                System.out.println(priorityQueue);
+                nodeChild.setPathCost(pathCost);
                 nodeChild.setParent(current);
                 nodeChild.setDepth(current.getDepth() + 1);
+                priorityQueue.add(nodeChild);
             }
         }
 
         return null;
+    }
+
+    private double getPastCost(PriorityQueue<Node> priorityQueue, Node node) {
+        for (Node n : priorityQueue) {
+            if (n.equals(node)) {
+                return n.getPathCost();
+            }
+        }
+
+        return 0;
     }
 
     @Override

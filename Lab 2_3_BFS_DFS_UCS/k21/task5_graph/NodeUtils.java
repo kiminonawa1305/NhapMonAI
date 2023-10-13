@@ -1,4 +1,4 @@
-package k21.task5;
+package k21.task5_graph;
 
 import java.util.ArrayList;
 import java.util.Collections;

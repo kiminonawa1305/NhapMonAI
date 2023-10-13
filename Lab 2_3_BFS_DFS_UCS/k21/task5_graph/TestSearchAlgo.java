@@ -1,4 +1,4 @@
-package k21.task5;
+package k21.task5_graph;
 
 public class TestSearchAlgo {
     public static void main(String[] args) {

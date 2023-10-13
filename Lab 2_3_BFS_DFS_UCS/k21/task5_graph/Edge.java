@@ -1,4 +1,4 @@
-package k21.task5;
+package k21.task5_graph;
 
 public class Edge implements Comparable<Edge> {
     private Node begin;

@@ -1,4 +1,4 @@
-package k21.task5;
+package k21.task5_graph;
 
 public interface ISearchAlgo {
 	public Node execute(Node root, String goal);// find the path from root node to the goal node
