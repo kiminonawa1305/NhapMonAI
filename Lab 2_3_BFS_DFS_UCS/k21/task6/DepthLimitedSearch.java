@@ -19,8 +19,9 @@ public class DepthLimitedSearch implements ISearchAlgo {
             current = stack.peek();
             if (current.getLabel().equals(goal)) return current;
 
-            if (current.getDepth() >= limit) {
-
+            if (current.getDepth() == limit) {
+                stack.pop();
+                continue;
             }
 
             for (Node child : current.getChildrenNodes()) {
