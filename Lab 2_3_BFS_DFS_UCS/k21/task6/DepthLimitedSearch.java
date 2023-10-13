@@ -14,21 +14,23 @@ public class DepthLimitedSearch implements ISearchAlgo {
         Stack<Node> stack = new Stack<>();
         stack.add(root);
         Node current;
-        a: while(!stack.isEmpty()) {
+        a:
+        while (!stack.isEmpty()) {
             current = stack.peek();
-            if(current.getLabel().equals(goal)) return current;
+            if (current.getLabel().equals(goal)) return current;
 
-            if(current.getDepth() < limit){
-                for(Node child : current.getChildrenNodes()) {
-                    if(child.getParent() == null){
-                        stack.add(child);
-                        child.setParent(current);
-                        child.setDepth(current.getDepth() + 1);
-                        continue a;
-                    }
-                }
+            if (current.getDepth() >= limit) {
+
             }
 
+            for (Node child : current.getChildrenNodes()) {
+                if (child.getParent() == null) {
+                    stack.add(child);
+                    child.setParent(current);
+                    child.setDepth(current.getDepth() + 1);
+                    continue a;
+                }
+            }
 
             stack.pop();
         }
@@ -37,6 +39,10 @@ public class DepthLimitedSearch implements ISearchAlgo {
 
     @Override
     public Node execute(Node root, String start, String goal) {
-        return null;
+        Node nodeStart = execute(root, start);
+        nodeStart.setParent(null);
+        System.out.println("================================================");
+        nodeStart.setPathCost(0);
+        return execute(nodeStart, goal);
     }
 }
