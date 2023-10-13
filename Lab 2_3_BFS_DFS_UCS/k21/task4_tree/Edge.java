@@ -1,4 +1,4 @@
-package k21.task4;
+package k21.task4_tree;
 
 public class Edge implements Comparable<Edge> {
     private Node begin;

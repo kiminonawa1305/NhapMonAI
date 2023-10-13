@@ -1,4 +1,4 @@
-package k21.task4;
+package k21.task4_tree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +104,7 @@ public class Node implements Comparable<Node> {
 
     @Override
     public int compareTo(Node o) {
-        return Double.compare(this.pathCost, o.pathCost);
+        return Double.compare(this.pathCost, o.pathCost) != 0 ? Double.compare(this.pathCost, o.pathCost) : this.label.compareTo(o.label);
     }
 
     @Override

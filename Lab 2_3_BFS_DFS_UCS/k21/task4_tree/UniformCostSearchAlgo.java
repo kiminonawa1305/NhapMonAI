@@ -1,4 +1,4 @@
-package k21.task4;
+package k21.task4_tree;
 
 import java.util.PriorityQueue;
 
@@ -25,9 +25,7 @@ public class UniformCostSearchAlgo implements ISearchAlgo {
                 }
                 child.setEnd(nodeChild);
                 nodeChild.setPathCost(current.getPathCost() + child.getWeight());
-                System.out.println(child.getEnd().getLabel() + ": (" + current.getLabel() + "=" + current.getPathCost() + "+" + child.getEnd().getLabel() + "=" + child.getWeight() + ")=" + child.getEnd().getPathCost());
                 priorityQueue.add(child.getEnd());
-                System.out.println(priorityQueue);
                 nodeChild.setParent(current);
                 nodeChild.setDepth(current.getDepth() + 1);
             }
@@ -38,6 +36,10 @@ public class UniformCostSearchAlgo implements ISearchAlgo {
 
     @Override
     public Node execute(Node root, String start, String goal) {
-      return null;
+        Node nodeStart = execute(root, start);
+        nodeStart.setParent(null);
+        System.out.println("================================================");
+        nodeStart.setPathCost(0);
+        return execute(nodeStart, goal);
     }
 }

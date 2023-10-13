@@ -1,4 +1,4 @@
-package k21.task4;
+package k21.task4_tree;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,6 +1,4 @@
-package k21.task4;
-
-import k21.task3.DepthFirstSearchAlgo;
+package k21.task4_tree;
 
 public class TestSearchAlgo {
     public static void main(String[] args) {
