@@ -20,20 +20,24 @@ public class UniformCostSearchAlgo implements ISearchAlgo {
                 return current;
             }
 
-            for (Edge child : current.getChildren()) {
-                Node nodeChild = child.getEnd();
-                double pathCost = current.getPathCost() + child.getWeight();
-                if (explored.contains(nodeChild) || pathCost > getPastCost(priorityQueue, nodeChild)) {
-                    continue;
-                }
-                nodeChild.setPathCost(pathCost);
-                nodeChild.setParent(current);
-                nodeChild.setDepth(current.getDepth() + 1);
-                priorityQueue.add(nodeChild);
-            }
+            duyet(explored, current);
         }
 
         return null;
+    }
+
+    private void duyet(List<Node> explored, Node current) {
+        for (Edge child : current.getChildren()) {
+            Node nodeChild = child.getEnd();
+            double pathCost = current.getPathCost() + child.getWeight();
+            if (explored.contains(nodeChild) || pathCost > getPastCost(priorityQueue, nodeChild)) {
+                continue;
+            }
+            nodeChild.setPathCost(pathCost);
+            nodeChild.setParent(current);
+            nodeChild.setDepth(current.getDepth() + 1);
+            priorityQueue.add(nodeChild);
+        }
     }
 
     private double getPastCost(PriorityQueue<Node> priorityQueue, Node node) {
