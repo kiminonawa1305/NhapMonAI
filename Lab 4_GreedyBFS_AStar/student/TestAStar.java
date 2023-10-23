@@ -1,7 +1,7 @@
 package lab4.inform.student;
 
 public class TestAStar {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CloneNotSupportedException {
 		Node s = new Node("S", 6);
 		Node b = new Node("B", 4);
 		Node a = new Node("A", 4);
@@ -28,8 +28,16 @@ public class TestAStar {
 		Node resultUniformCostSearch2 = uniformCostSearch.execute(s, a.getLabel(),  g.getLabel());
 		System.out.println(NodeUtils.printPath(resultUniformCostSearch2));
 
-		IInformedSearchAlgo aStarSearchAlgo = new AStarSearchAlgo();
-
 		IInformedSearchAlgo greedyBestFirstSearch = new GreedyBestFirstSearch();
+		Node resultGreedyBestFirstSearch1 = greedyBestFirstSearch.execute(s, g.getLabel());
+		System.out.println(NodeUtils.printPath(resultGreedyBestFirstSearch1));
+		Node resultGreedyBestFirstSearch2 = greedyBestFirstSearch.execute(s, a.getLabel(),  g.getLabel());
+		System.out.println(NodeUtils.printPath(resultGreedyBestFirstSearch2));
+
+		IInformedSearchAlgo aStarSearchAlgo = new AStarSearchAlgo();
+		Node resultAStarSearchAlgo1 = aStarSearchAlgo.execute(s, g.getLabel());
+		System.out.println(NodeUtils.printPath(resultAStarSearchAlgo1));
+		Node resultAStarSearchAlgo2 = greedyBestFirstSearch.execute(s, a.getLabel(),  g.getLabel());
+		System.out.println(NodeUtils.printPath(resultAStarSearchAlgo2));
 	}
 }
