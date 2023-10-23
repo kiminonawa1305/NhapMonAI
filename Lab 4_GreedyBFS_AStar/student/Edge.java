@@ -30,4 +30,14 @@ public class Edge {
 	public double getWeight() {
 		return weight;
 	}
+
+
+	public void setEnd(Node end) {
+		this.end = end;
+	}
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return new Edge(this.begin, this.end, this.weight);
+	}
 }

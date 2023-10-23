@@ -41,6 +41,10 @@ public class Node {
 		this.parent = parent;
 	}
 
+	public void setChildren(List<Edge> children) {
+		this.children = children;
+	}
+
 	public List<Edge> getChildren() {
 		return children;
 	}
@@ -101,5 +105,23 @@ public class Node {
 	@Override
 	public String toString() {
 		return this.label;
+	}
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		Node clone = new Node(this.getLabel(), this.getH());
+		List<Edge> cloneListChildren = new ArrayList<Edge>();
+		for(Edge edge : this.getChildren()){
+			if(edge.getEnd().equals(this)){
+				Edge cloneEdge = (Edge)edge.clone();
+				cloneEdge.setEnd(clone);
+				cloneListChildren.add(cloneEdge);
+			}else{
+				cloneListChildren.add(edge);
+			}
+		}
+
+		clone.setChildren(cloneListChildren);
+		return clone;
 	}
 }
