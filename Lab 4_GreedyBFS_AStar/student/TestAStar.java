@@ -22,8 +22,10 @@ public class TestAStar {
 		f.addEdge(g, 1);
 		e.addEdge(g, 2);
 		
-//		IInformedSearchAlgo aStar = new AStarSearchAlgo();
-//		Node res = aStar.execute(s, g.getLabel());
-//		System.out.println(NodeUtils.printPath(res));
+		IInformedSearchAlgo aStarSearchAlgo = new AStarSearchAlgo();
+		IInformedSearchAlgo uniformCostSearch = new UniformCostSearch();
+		IInformedSearchAlgo greedyBestFirstSearch = new GreedyBestFirstSearch();
+		Node res = uniformCostSearch.execute(s, g.getLabel());
+		System.out.println(NodeUtils.printPath(res));
 	}
 }
