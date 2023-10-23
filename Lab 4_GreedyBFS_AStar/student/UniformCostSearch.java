@@ -10,6 +10,7 @@ public class UniformCostSearch implements IInformedSearchAlgo {
             return valueCompare == 0 ? Double.compare(n1.getG(), n2.getG()) : valueCompare;
         });
 
+        frontier.add(root);
         while(!frontier.isEmpty()){
             Node current = frontier.poll();
             if(current.getLabel().equals(goal)){
