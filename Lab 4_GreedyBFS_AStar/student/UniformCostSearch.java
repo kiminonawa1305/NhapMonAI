@@ -6,8 +6,8 @@ public class UniformCostSearch implements IInformedSearchAlgo {
     @Override
     public Node execute(Node root, String goal) {
         PriorityQueue<Node> frontier = new PriorityQueue<Node>((n1, n2) -> {
-            int valueCompare = n1.getLabel().compareTo(n2.getLabel());
-            return valueCompare == 0 ? Double.compare(n1.getG(), n2.getG()) : valueCompare;
+            int valueCompare = Double.compare(n1.getG(), n2.getG());
+            return valueCompare == 0 ? n1.getLabel().compareTo(n2.getLabel()) : valueCompare;
         });
 
         frontier.add(root);
