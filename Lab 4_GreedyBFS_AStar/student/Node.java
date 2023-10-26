@@ -122,13 +122,16 @@ public class Node {
         Node clone = new Node(this.getLabel(), this.getH());
         List<Edge> cloneListChildren = new ArrayList<Edge>();
         for (Edge edge : this.getChildren()) {
+            Edge cloneEdge = (Edge) edge.clone();
             if (edge.getEnd().equals(this)) {
-                Edge cloneEdge = (Edge) edge.clone();
                 cloneEdge.setEnd(clone);
-                cloneListChildren.add(cloneEdge);
-            } else {
-                cloneListChildren.add(edge);
             }
+
+            if (edge.getBegin().equals(this)) {
+                cloneEdge.setBegin(clone);
+            }
+
+            cloneListChildren.add(edge);
         }
 
         clone.setChildren(cloneListChildren);

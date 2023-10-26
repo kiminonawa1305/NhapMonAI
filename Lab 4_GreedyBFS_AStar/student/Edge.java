@@ -36,6 +36,10 @@ public class Edge {
 		this.end = end;
 	}
 
+	public void setBegin(Node begin) {
+		this.begin = begin;
+	}
+
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
 		return new Edge(this.begin, this.end, this.weight);
