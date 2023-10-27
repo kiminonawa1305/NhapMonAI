@@ -37,7 +37,7 @@ public class TestAStar {
 		IInformedSearchAlgo aStarSearchAlgo = new AStarSearchAlgo();
 		Node resultAStarSearchAlgo1 = aStarSearchAlgo.execute(s, g.getLabel());
 		System.out.println(NodeUtils.printPath(resultAStarSearchAlgo1));
-		Node resultAStarSearchAlgo2 = greedyBestFirstSearch.execute(s, a.getLabel(),  g.getLabel());
+		Node resultAStarSearchAlgo2 = aStarSearchAlgo.execute(s, a.getLabel(),  g.getLabel());
 		System.out.println(NodeUtils.printPath(resultAStarSearchAlgo2));
 	}
 }
