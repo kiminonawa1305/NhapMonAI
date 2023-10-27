@@ -39,6 +39,17 @@ public class AStarSearchAlgo implements IInformedSearchAlgo {
         return null;
     }
 
+    public boolean istAdmissible(Node root, String goal) throws CloneNotSupportedException {
+        Node result = execute(root, goal);
+        if(result.getG() < root.getH()){
+            return false;
+        }
+        for(Edge edge : root.getChildren()){
+           istAdmissible(edge.getEnd(), goal);
+        }
+        return true;
+    }
+
     @Override
     public Node execute(Node root, String start, String goal) throws CloneNotSupportedException {
         Node nodeStart = execute(root, start);
