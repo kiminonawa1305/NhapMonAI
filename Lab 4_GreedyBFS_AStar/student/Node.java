@@ -10,7 +10,6 @@ public class Node {
     private double g;// from Start to this node
     private double h;// from this node to the goal
 
-    private double f;
     private List<Edge> children = new ArrayList<Edge>();
 
     public Node(String label) {
@@ -29,14 +28,6 @@ public class Node {
 
     public void setG(double g) {
         this.g = g;
-    }
-
-    public double getF() {
-        return f;
-    }
-
-    public void setF(double f) {
-        this.f = f;
     }
 
     public String getLabel() {
