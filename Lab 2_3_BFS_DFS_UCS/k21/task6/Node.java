@@ -109,10 +109,22 @@ public class Node implements Comparable<Node> {
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        Node nodeClone = new Node(this.label);
-        nodeClone.setPathCost(this.pathCost);
-        nodeClone.setDepth(this.depth);
-        nodeClone.setChildren(this.children);
-        return nodeClone;
+        Node clone = new Node(this.getLabel());
+        List<Edge> cloneListChildren = new ArrayList<Edge>();
+        for (Edge edge : this.getChildren()) {
+            Edge cloneEdge = (Edge) edge.clone();
+            if (edge.getEnd().equals(this)) {
+                cloneEdge.setEnd(clone);
+            }
+
+            if (edge.getBegin().equals(this)) {
+                cloneEdge.setBegin(clone);
+            }
+
+            cloneListChildren.add(edge);
+        }
+
+        clone.setChildren(cloneListChildren);
+        return clone;
     }
 }

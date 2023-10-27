@@ -31,6 +31,10 @@ public class Edge implements Comparable<Edge> {
         return weight;
     }
 
+    public void setBegin(Node begin) {
+        this.begin = begin;
+    }
+
     public void setEnd(Node end) {
         this.end = end;
     }
@@ -42,6 +46,6 @@ public class Edge implements Comparable<Edge> {
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        return new Edge((Node) this.begin.clone(), (Node) this.end.clone(), this.weight);
+        return new Edge(this.begin, this.end, this.weight);
     }
 }
