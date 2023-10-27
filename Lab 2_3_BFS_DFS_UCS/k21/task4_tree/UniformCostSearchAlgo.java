@@ -12,7 +12,6 @@ public class UniformCostSearchAlgo implements ISearchAlgo {
         Node current;
         while (!priorityQueue.isEmpty()) {
             current = priorityQueue.poll();
-            System.out.println(current.getLabel());
             if (current.getLabel().equals(goal)) {
                 return current;
             }
@@ -23,19 +22,19 @@ public class UniformCostSearchAlgo implements ISearchAlgo {
         return null;
     }
 
-    private void duyet(Node current){
-        for (Edge child : current.getChildren()) {
-            Node nodeChild = null;
-            try {
-                nodeChild = (Node) child.getEnd().clone();
-            } catch (CloneNotSupportedException e) {
-                throw new RuntimeException(e);
+    private void duyet(Node current) throws CloneNotSupportedException {
+        for (Edge edge : current.getChildren()) {
+            Node child = edge.getEnd();
+            if (priorityQueue.contains(child)) {
+                child = (Node) edge.getEnd().clone();
+                edge.setEnd(child);
             }
-            child.setEnd(nodeChild);
-            nodeChild.setPathCost(current.getPathCost() + child.getWeight());
-            priorityQueue.add(child.getEnd());
-            nodeChild.setParent(current);
-            nodeChild.setDepth(current.getDepth() + 1);
+            child.setParent(current);
+            edge.setEnd(child);
+            child.setPathCost(current.getPathCost() + edge.getWeight());
+            priorityQueue.add(child);
+            child.setParent(current);
+            child.setDepth(current.getDepth() + 1);
         }
     }
 
