@@ -57,6 +57,8 @@ public class Node {
                 if (this.state[i][j] == tile) {
                     result[0] = i;
                     result[1] = j;
+
+                    return result;
                 }
             }
         }
@@ -96,35 +98,27 @@ public class Node {
         return output.toString();
     }
 
-    public void setHByH1(int[][] goal) {
-        for (int row = 0; row < goal.length; row++) {
-            for (int col = 0; col < goal[row].length; col++) {
-                if (state[row][col] != goal[row][col]) {
-                    ++this.h;
-                }
-            }
+    public int computeH1(Node goalState) {
+        int result = 0;
+        int countTile = this.getColumn()* this.getRow() - 1;
+        for(int tile = 1; tile < countTile; tile++) {
+            int[] locationInGoal = goalState.getLocation(tile);
+            int[] locationInCurrent = this.getLocation(tile);
+            if(locationInGoal[0] != locationInCurrent[0] || locationInGoal[1] != locationInCurrent[1]) result++; 
         }
+
+        return result;
     }
 
-    public void setHByH2(int[][] goal){
-        for (int row = 0; row < state.length; row++) {
-            for (int col = 0; col < state[row].length; col++) {
-                this.h += distance(row, col, goal);
-            }
-        }
-    }
-
-    private int distance(int row, int col, int[][] goal){
-        int distance = 0;
-        for (int r = 0; row < goal.length; row++) {
-            for (int c = 0; col < goal[row].length; col++) {
-                if(goal[r][c] == state[row][col]){
-                    distance = Math.abs(r - row) + Math.abs(c - col);
-                    return distance;
-                }
-            }
+    public int computeH2(Node goalState) {
+        int result = 0;
+        int countTile = this.getColumn()* this.getRow() - 1;
+        for(int tile = 1; tile < countTile; tile++) {
+            int[] locationInGoal = goalState.getLocation(tile);
+            int[] locationInCurrent = this.getLocation(tile);
+            result += PuzzleUtils.manhattanDistance(locationInGoal, locationInCurrent);
         }
 
-        return distance;
+        return result;
     }
 }

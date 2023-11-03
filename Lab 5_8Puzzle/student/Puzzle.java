@@ -61,52 +61,56 @@ public class Puzzle {
 
 	// The total number of misplaced tiles
 	public int computeH1(Node currentState) {
-		int output = 0;
-		/* Enter your code here */
-		return output;
+		return currentState.computeH1(goalState);
 	}
 
 	// Using manhattanDistance above to compute H
 	public int computeH2(Node currentState) {
-		int result = 0;
-		/* Enter your code here */
-		return result;
+		return currentState.computeH2(goalState);
 	}
-
 
 	public Node moveWhiteTile(Node currentState, char operator) {
 		Node result = new Node(currentState);
 		int[] whiteTile = currentState.getLocation(0);//get white tile
+
+		int row = 0, col = 0;
+
 		if (operator == 'u') {// Case-1: Move tile UP
 			// New postion of tile if move UP
-			int row = whiteTile[0] - 1;
-			int col = whiteTile[1];
-			if (row >= 0) {// Tile stands inside the map
-				int tmp = currentState.getTile(row, col);
-				result.updateTile(row, col, 0);
-				result.updateTile(whiteTile[0], whiteTile[1], tmp);
-				result.setH(computeH2(result));
-				return result;
-			}
+			row = whiteTile[0] - 1;
+			col = whiteTile[1];
 		}
 
 		else if (operator == 'd') {// Case-2: Move tile DOWN
 			/* Enter your code here */
-
+			row = whiteTile[0] + 1;
+			col = whiteTile[1];
 		}
 
 		else if (operator == 'l') {// Case-3: Move tile LEFT
 			/* Enter your code here */
-
+			row = whiteTile[0];
+			col = whiteTile[1] - 1;
 		}
 
 		else if (operator == 'r') {// Case-4: Move tile RIGHT
 			/* Enter your code here */
-
+			row = whiteTile[0];
+			col = whiteTile[1] + 1;
 		}
-		return null;
+
+		try {
+			int tmp = currentState.getTile(row, col);
+			result.updateTile(row, col, 0);
+			result.updateTile(whiteTile[0], whiteTile[1], tmp);
+			result.setH(computeH2(result));
+			return result;
+		}catch (Exception e) {
+			return null;
+		}
 	}
 
+	/*Lấy danh sách các node con có thể tạo từ node currentState*/
 	public List<Node> getSuccessors(Node currentState) {
 		ArrayList<Node> result = new ArrayList<Node>();
 
