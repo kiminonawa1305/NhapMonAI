@@ -3,97 +3,128 @@ package puzzle_8.student;
 import java.util.Arrays;
 
 public class Node {
-	private int[][] state;
-	private int h;
-	private int g;
+    private int[][] state;
+    private int h;
+    private int g;
 
-	public Node(int row, int col) {
-		this.state = new int[row][col];
-	}
+    public Node(int row, int col) {
+        this.state = new int[row][col];
+    }
 
-	// Copy a node
-	public Node(Node node) {
-		this.state = new int[node.state.length][node.state[0].length];
-		for (int i = 0; i < node.state.length; i++) {
-			for (int j = 0; j < node.state[i].length; j++) {
-				state[i][j] = node.state[i][j];
-			}
-		}
-	}
+    // Copy a node
+    public Node(Node node) {
+        this.state = new int[node.state.length][node.state[0].length];
+        for (int i = 0; i < node.state.length; i++) {
+            for (int j = 0; j < node.state[i].length; j++) {
+                state[i][j] = node.state[i][j];
+            }
+        }
+    }
 
-	public int getG() {
-		return this.g;
-	}
+    public int getG() {
+        return this.g;
+    }
 
-	public int getF() {
-		return this.g + this.h;
-	}
+    public int getF() {
+        return this.g + this.h;
+    }
 
-	public int getH() {
-		return h;
-	}
+    public int getH() {
+        return h;
+    }
 
-	public void setH(int h) {
-		this.h = h;
-	}
+    public void setH(int h) {
+        this.h = h;
+    }
 
-	public void setG(int g) {
-		this.g = g;
-	}
+    public void setG(int g) {
+        this.g = g;
+    }
 
-	public int getRow() {
-		return this.state.length;
-	}
+    public int getRow() {
+        return this.state.length;
+    }
 
-	public int getColumn() {
-		return this.state[0].length;
-	}
+    public int getColumn() {
+        return this.state[0].length;
+    }
 
-	// Get the location of a tile in the board
-	public int[] getLocation(int tile) {
-		int[] result = new int[2];
-		for (int i = 0; i < this.state.length; i++) {
-			for (int j = 0; j < this.state[i].length; j++) {
-				if (this.state[i][j] == tile) {
-					result[0] = i;
-					result[1] = j;
-				}
-			}
-		}
-		return result;
-	}
+    // Get the location of a tile in the board
+    public int[] getLocation(int tile) {
+        int[] result = new int[2];
+        for (int i = 0; i < this.state.length; i++) {
+            for (int j = 0; j < this.state[i].length; j++) {
+                if (this.state[i][j] == tile) {
+                    result[0] = i;
+                    result[1] = j;
+                }
+            }
+        }
+        return result;
+    }
 
-	// Update the position of a tile
-	public void updateTile(int row, int col, int value) {
-		this.state[row][col] = value;
-	}
+    // Update the position of a tile
+    public void updateTile(int row, int col, int value) {
+        this.state[row][col] = value;
+    }
 
-	public int getTile(int row, int column) {
-		return this.state[row][column];
-	}
+    public int getTile(int row, int column) {
+        return this.state[row][column];
+    }
 
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		else if (obj == null || obj.getClass() != this.getClass()) {
-			return false;
-		} else {
-			Node that = (Node) obj;
-			return Arrays.deepEquals(this.state, that.state);
-		}
-	}
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        else if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        } else {
+            Node that = (Node) obj;
+            return Arrays.deepEquals(this.state, that.state);
+        }
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder output = new StringBuilder();
-		for (int i = 0; i < state.length; i++) {
-			for (int j = 0; j < state[i].length; j++) {
-				output.append(state[i][j] + " ");
-			}
-			output.append("\n");
-		}
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+        for (int i = 0; i < state.length; i++) {
+            for (int j = 0; j < state[i].length; j++) {
+                output.append(state[i][j] + " ");
+            }
+            output.append("\n");
+        }
 
-		return output.toString();
-	}
+        return output.toString();
+    }
 
+    public void setHByH1(int[][] goal) {
+        for (int row = 0; row < goal.length; row++) {
+            for (int col = 0; col < goal[row].length; col++) {
+                if (state[row][col] != goal[row][col]) {
+                    ++this.h;
+                }
+            }
+        }
+    }
+
+    public void setHByH2(int[][] goal){
+        for (int row = 0; row < state.length; row++) {
+            for (int col = 0; col < state[row].length; col++) {
+                this.h += distance(row, col, goal);
+            }
+        }
+    }
+
+    private int distance(int row, int col, int[][] goal){
+        int distance = 0;
+        for (int r = 0; row < goal.length; row++) {
+            for (int c = 0; col < goal[row].length; col++) {
+                if(goal[r][c] == state[row][col]){
+                    distance = Math.abs(r - row) + Math.abs(c - col);
+                    return distance;
+                }
+            }
+        }
+
+        return distance;
+    }
 }
