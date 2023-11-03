@@ -1,6 +1,7 @@
 package puzzle_8.student;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Node {
     private int[][] state;
@@ -119,6 +120,14 @@ public class Node {
             result += PuzzleUtils.manhattanDistance(locationInGoal, locationInCurrent);
         }
 
+        return result;
+    }
+
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(h, g);
+        result = 31 * result + Arrays.hashCode(state);
         return result;
     }
 }

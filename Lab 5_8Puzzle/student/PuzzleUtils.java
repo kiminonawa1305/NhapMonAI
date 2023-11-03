@@ -14,7 +14,8 @@ public class PuzzleUtils {
 
 		@Override
 		public int compare(Node a, Node b) {
-			return a.getH() - b.getH();
+			int result = a.getH() - b.getH();
+			return result == 0 ? a.hashCode() - a.hashCode() : result;
 		}
 	};
 	// Compare 2 nodes by F values
@@ -22,7 +23,8 @@ public class PuzzleUtils {
 
 		@Override
 		public int compare(Node a, Node b) {
-			return a.getF() - b.getF();
+			int result = a.getF() - b.getF();
+			return result == 0 ? a.hashCode() - b.hashCode() : result;
 		}
 	};
 }
