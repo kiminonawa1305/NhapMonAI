@@ -103,7 +103,6 @@ public class Puzzle {
 			int tmp = currentState.getTile(row, col);
 			result.updateTile(row, col, 0);
 			result.updateTile(whiteTile[0], whiteTile[1], tmp);
-			result.setH(computeH2(result));
 			return result;
 		}catch (Exception e) {
 			return null;

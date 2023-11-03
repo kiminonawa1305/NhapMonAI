@@ -89,6 +89,11 @@ public class Node {
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
+        output.append("h: ")
+                .append(h)
+                .append("\tg:")
+                .append(g)
+                .append("\n");
         for (int i = 0; i < state.length; i++) {
             for (int j = 0; j < state[i].length; j++) {
                 output.append(state[i][j] + " ");
@@ -101,7 +106,7 @@ public class Node {
 
     public int computeH1(Node goalState) {
         int result = 0;
-        int countTile = this.getColumn()* this.getRow() - 1;
+        int countTile = this.getColumn() * this.getRow();
         for(int tile = 1; tile < countTile; tile++) {
             int[] locationInGoal = goalState.getLocation(tile);
             int[] locationInCurrent = this.getLocation(tile);
@@ -113,7 +118,7 @@ public class Node {
 
     public int computeH2(Node goalState) {
         int result = 0;
-        int countTile = this.getColumn()* this.getRow() - 1;
+        int countTile = this.getColumn()* this.getRow();
         for(int tile = 1; tile < countTile; tile++) {
             int[] locationInGoal = goalState.getLocation(tile);
             int[] locationInCurrent = this.getLocation(tile);
