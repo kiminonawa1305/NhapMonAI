@@ -22,7 +22,7 @@ public class AStarSearchByF2 implements IPuzzleAlgo {
             System.out.println(current);
             if (current.getH() == 0) {
                 end = System.currentTimeMillis();
-                this.addAmountStepByAlgo(name, step, end - start);
+                this.addInfoAlo(name, step, end - start);
                 return current;
             }
             step++;
