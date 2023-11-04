@@ -19,8 +19,10 @@ public class TestNode {
 //		aStarSearchByF2.execute(p);
 //		BFS bfs = new BFS();
 //		bfs.execute(p);
-		DFS dfs = new DFS();
-		dfs.execute(p);
+//		DFS dfs = new DFS();
+//		dfs.execute(p);
+		HillClimbingSearch hillClimbingSearch = new HillClimbingSearch();
+		hillClimbingSearch.execute(p);
 
 		for(String info : IPuzzleAlgo.infoAlo){
 			System.out.println(info);
