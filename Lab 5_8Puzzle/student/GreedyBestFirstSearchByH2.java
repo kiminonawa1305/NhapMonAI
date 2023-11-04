@@ -18,7 +18,7 @@ public class GreedyBestFirstSearchByH2 implements IPuzzleAlgo {
             expected.add(current);
             System.out.println(current);
             if (current.getH() == 0) {
-                System.out.println("Số bước phải đi: " + step + " bước");
+                this.addAmountStepByAlgo("Tìm kiếm Greedy Best First theo H2", step);
                 return current;
             }
             step++;

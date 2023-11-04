@@ -17,6 +17,10 @@ public class TestNode {
 		aStarSearchByF1.execute(p);
 		AStarSearchByF2 aStarSearchByF2 = new AStarSearchByF2();
 		aStarSearchByF2.execute(p);
+
+		for(String info : IPuzzleAlgo.amountStepByAlgo){
+			System.out.println(info);
+		}
 //		Node goalState = p.getGoalState();
 //		System.out.println(p.getInitialState());
 //		System.out.println("H: "+ initialState.getH());
