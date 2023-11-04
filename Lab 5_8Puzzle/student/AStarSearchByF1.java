@@ -16,7 +16,7 @@ public class AStarSearchByF1 implements IPuzzleAlgo{
         System.out.println("=============================" + name + "===================================");
 
         current.setH(model.computeH1(current));
-        frontier.add(model.getInitialState());
+        frontier.add(current);
         while (!frontier.isEmpty()) {
             current = frontier.poll();
             expected.add(current);
