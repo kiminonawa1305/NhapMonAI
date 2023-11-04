@@ -9,15 +9,16 @@ public class AStarSearchByF1 implements IPuzzleAlgo{
         String name = "Tìm kiếm A Star Search theo H1";
         int step = 0;
         long start = System.currentTimeMillis(), end = 0;
+        Node current = model.getInitialState();
         ArrayList<Node> expected = new ArrayList<Node>();
         PriorityQueue<Node> frontier = new PriorityQueue<Node>(PuzzleUtils.HeuristicComparatorByF);
 
         System.out.println("=============================" + name + "===================================");
 
-        model.getInitialState().setH(model.computeH1(model.getInitialState()));
+        current.setH(model.computeH1(current));
         frontier.add(model.getInitialState());
         while (!frontier.isEmpty()) {
-            Node current = frontier.poll();
+            current = frontier.poll();
             expected.add(current);
             System.out.println(current);
             if (current.getH() == 0) {

@@ -11,15 +11,16 @@ public class BFS implements IPuzzleAlgo {
         String name = "Tìm kiếm theo chiều rộng";
         int step = 0;
         long start = System.currentTimeMillis(), end = 0;
+        Node current = model.getInitialState();
         Queue<Node> frontier = new LinkedList<>();
         ArrayList<Node> expected = new ArrayList<Node>();
 
         System.out.println("=============================" + name + "===================================");
 
-        model.getInitialState().setH(model.computeH1(model.getInitialState()));
+        current.setH(model.computeH1(current));
         frontier.add(model.getInitialState());
         while (!frontier.isEmpty()) {
-            Node current = frontier.poll();
+            current = frontier.poll();
             expected.add(current);
             System.out.println(current);
             if (current.getH() == 0) {
