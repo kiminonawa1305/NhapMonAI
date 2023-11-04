@@ -1,5 +1,5 @@
 package puzzle_8.student;
 
 public interface IPuzzleAlgo {
-	public Node execute(Puzzle model) throws InterruptedException;
+	public Node execute(Puzzle model);
 }

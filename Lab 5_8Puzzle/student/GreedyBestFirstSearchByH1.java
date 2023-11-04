@@ -11,11 +11,12 @@ public class GreedyBestFirstSearchByH1 implements IPuzzleAlgo {
         ArrayList<Node> expected = new ArrayList<Node>();
         frontier.add(model.getInitialState());
 
+        model.getInitialState().setH(model.computeH2(model.getInitialState()));
         while (!frontier.isEmpty()) {
             Node current = frontier.poll();
             expected.add(current);
             System.out.println(current);
-            if (model.computeH1(current) == 0) return current;
+            if (current.getH() == 0) return current;
 
             for (Node child : model.getSuccessors(current)) {
                 if (!frontier.contains(child) && !expected.contains(child)) {
