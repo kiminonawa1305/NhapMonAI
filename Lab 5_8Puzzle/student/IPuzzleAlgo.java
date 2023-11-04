@@ -7,7 +7,7 @@ public interface IPuzzleAlgo {
 
 	public Node execute(Puzzle model);
 
-	public default void addAmountStepByAlgo(String name, int amount){
-		amountStepByAlgo.add("Thuật toán " + name + " sẽ đi: " + amount + " bước để hoàn thành");
+	public default void addAmountStepByAlgo(String name, int amount, long time){
+		amountStepByAlgo.add("Thuật toán " + name + " sẽ đi: " + amount + " bước và tiêu tốn " + time + " ms để hoàn thành ");
 	}
 }
