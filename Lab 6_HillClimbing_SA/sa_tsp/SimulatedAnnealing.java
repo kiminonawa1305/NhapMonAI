@@ -21,7 +21,7 @@ public class SimulatedAnnealing {
 				if (currentDistance < bestDistance) {// better solution is found
 					bestDistance = currentDistance;
 				} else if (Math.exp((bestDistance - currentDistance) / t) < Math.random()) {
-					//if (e^((bestDistance - currentDistance) / t) > math.random([0, 1))
+					if (Math.exp((bestDistance - currentDistance) / t) > Math.random())
 					//==> accept current solution.
 					currentSolution.revertSwap();
 				}
@@ -39,4 +39,13 @@ public class SimulatedAnnealing {
 		double best = SimulatedAnnealing.simulateAnnealing(10, 10000, 0.9995);
 		System.out.println(best);
 	}
+
+	/*
+	*dental(E) = next.getH() - current.getH();
+	* T là 1 số cho trước.
+	* while(current.getH() != 0 || T > 0)
+	* Nó chỉ chấp nhận khi next tốt hơn current hoặc là Math.exp(dental(E)/t) < Math.random()
+	* Mỗi lần lập thì T sẽ trừ - hoặc T sẽ được tính = T * 0.925;
+	* */
+
 }

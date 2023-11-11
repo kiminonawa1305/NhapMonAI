@@ -37,7 +37,14 @@ public class Node {
 
 	public int getH() {
 		int heuristic = 0;
-		// Enter your code here
+		for(int current = 0; current < N - 1; current++) {
+			for(int other = current + 1; other < N; other++) {
+				if(state[current].isConflict(state[other])){
+					heuristic++;
+					break;
+				}
+			}
+		}
 		return heuristic;
 	}
 
@@ -51,6 +58,22 @@ public class Node {
 			//Mỗi trạng thái chỉ có 8 node con tương ứng có 8 cách duy chuyển của từng quân cờ.
 			child.state[i].move();
 
+			if(child.state[i].getColumn() < 0){
+				child.state[i].setColumn(N - 1);
+			}
+
+			if(child.state[i].getRow() < 0){
+				child.state[i].setRow(N - 1);
+			}
+
+			if(child.state[i].getColumn() == 8){
+				child.state[i].setColumn(0);
+			}
+
+			if(child.state[i].getRow() == 8){
+				child.state[i].setRow(0);
+			}
+
 			result.add(child);
 		}
 
@@ -58,22 +81,37 @@ public class Node {
 		return result;
 	}
 
+	/*Tiềm kiếm SA sẽ dùng phương thức này. còn HillClimbing không dùng nó*/
 	public Node selectNextRandomCandidate() {
-		// Enter your code here
-		return null;
+		Random random = new Random();
+		return this.generateAllCandidates().get(random.nextInt(N));
 	}
+
+	public Node getBestCandidate(){
+		Node result = this;
+
+		for(Node child : this.generateAllCandidates()){
+			if(result.getH() > child.getH()){
+				result = child;
+			}
+		}
+
+		return result;
+	};
 
 	public void displayBoard() {
 		int[][] board = new int[N][N];
 		// set queen position on the board
 		for (int i = 0; i < N; i++) {
-			board[state[i].getRow()][state[i].getColumn()] = 1;
+			board[state[i].getRow()][state[i].getColumn()] = i + 1;
 		}
+
+		System.out.println("H: " + this.getH());
 		// print board
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
-				if (board[i][j] == 1) {
-					System.out.print("Q" + " ");
+				if (board[i][j] != 0) {
+					System.out.print(board[i][j] + " ");
 				} else {
 					System.out.print("-" + " ");
 				}
@@ -85,5 +123,6 @@ public class Node {
 	public static void main(String[] args) {
 		Node node = new Node();
 		node.displayBoard();
+		System.out.println(node.getH());
 	}
 }
