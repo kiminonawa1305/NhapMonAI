@@ -135,6 +135,7 @@ public class Node implements Comparable<Node> {
 		for (int i = 0; i < N; i++) {
 			board[state[i].getRow()][state[i].getColumn()] = 1;
 		}
+		System.out.println("H: " + this.getH());
 		// print board
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
