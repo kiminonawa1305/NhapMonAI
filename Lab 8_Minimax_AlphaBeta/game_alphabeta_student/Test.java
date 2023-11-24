@@ -50,8 +50,12 @@ public class Test {
         m.addChild(u);
         m.addChild(v);
 
-        MiniMaxSearchAlgo miniMaxSearchAlgo = new MiniMaxSearchAlgo();
-        miniMaxSearchAlgo.execute(a);
+//        MiniMaxSearchAlgo miniMaxSearchAlgo = new MiniMaxSearchAlgo();
+//        miniMaxSearchAlgo.execute(a);
+//        System.out.println(a.getValue());
+
+        AlphaBetaSearchAlgo alphaBetaSearchAlgo = new AlphaBetaSearchAlgo();
+        alphaBetaSearchAlgo.execute(a);
         System.out.println(a.getValue());
     }
 }
