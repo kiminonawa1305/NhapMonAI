@@ -1,7 +1,7 @@
 package game_alphabeta_student;
 
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Node e1 = new Node("e1", 3);
         Node e2 = new Node("e2", 1);
         Node f1 = new Node("f1", 6);
