@@ -1,7 +1,6 @@
 package game_alphabeta_student;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -62,10 +61,17 @@ public class Node {
 	}
 
 	// Defined comparator which is used for sorting children by alphabetical order
-	public static Comparator<Node> LabelComparator = new Comparator<Node>() {
+	public static Comparator<Node> letToRight = new Comparator<Node>() {
 		@Override
 		public int compare(Node o1, Node o2) {
 			return o1.getLabel().compareTo(o2.getLabel());
+		}
+	};
+
+	public static Comparator<Node> rightToLeft = new Comparator<Node>() {
+		@Override
+		public int compare(Node o1, Node o2) {
+			return -o1.getLabel().compareTo(o2.getLabel());
 		}
 	};
 }
