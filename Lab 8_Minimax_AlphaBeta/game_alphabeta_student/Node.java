@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Node {
 	private String label;
-	private int value;
+	private Integer value;
 	private List<Node> children = new ArrayList<Node>();
 
 	// use for non-terminal node
@@ -28,11 +28,11 @@ public class Node {
 		return children;
 	}
 
-	public int getValue() {
+	public Integer getValue() {
 		return value;
 	}
 
-	public void setValue(int value) {
+	public void setValue(Integer value) {
 		this.value = value;
 	}
 

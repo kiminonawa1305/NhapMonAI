@@ -52,7 +52,6 @@ public class Test {
 //        System.out.println(a.getValue());
 
         AlphaBetaSearchAlgo alphaBetaSearchAlgo = new AlphaBetaSearchAlgo();
-        alphaBetaSearchAlgo.executeExtend(a, Node.rightToLeft);
-        System.out.println(a.getValue());
+        System.out.println( alphaBetaSearchAlgo.executeExtend(Node.rightToLeft).getValue());
     }
 }
