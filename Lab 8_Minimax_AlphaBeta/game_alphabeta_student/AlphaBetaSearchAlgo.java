@@ -30,26 +30,31 @@ public class AlphaBetaSearchAlgo implements ISearchAlgo {
         }
     }
 
-    public Node executeExtend(Comparator comparator) throws Exception {
+    public Node executeExtend() throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Node root = new Node("A");
         Queue<Node> queue = new LinkedList<>();
         queue.add(root);
         insertNode(queue, reader, root.getLabel());
-        reader.close();
-        int alpha = Integer.MIN_VALUE;
-        int beta = Integer.MAX_VALUE;
-        if (checkSortLeftToRight(root)) {
-            root.setValue(maxValue(root, alpha, beta, comparator));
-            return root;
-        } else {
-            throw new Exception("Lỗi sắp xếp thứ tự các nốt!\nVui lòng thêm các nốt theo tứ tự tăng dần từ trái sang phải theo bảng chữ cái!");
+        String ask = "";
+        while (true) {
+            System.out.println("Kiểm tra từ trái qua phải?\ny: Từ trái qua qua.\nn: Từ phải qua trái.\nquit: Thoát!");
+            ask = reader.readLine();
+            if (ask == null || ask.toLowerCase().equals("quit")) break;
+            if (ask.toLowerCase().equals("n"))
+                root.setValue(maxValue(root, Integer.MIN_VALUE, Integer.MAX_VALUE, Node.letToRight));
+            if (ask.toLowerCase().equals("y"))
+                root.setValue(maxValue(root, Integer.MIN_VALUE, Integer.MAX_VALUE, Node.rightToLeft));
+
         }
+
+        reader.close();
+        return root;
     }
 
     public void insertNode(Queue<Node> queue, BufferedReader reader, String nextLabel) throws IOException {
         int nodeChildren = 0;
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             Node root = queue.poll();
             while (true) {
                 System.out.print("Nhập số node con của node " + root.getLabel() + ": ");
