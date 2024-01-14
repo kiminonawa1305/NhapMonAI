@@ -41,9 +41,9 @@ public class AlphaBetaSearchAlgo implements ISearchAlgo {
             System.out.println("Kiểm tra từ trái qua phải?\ny: Từ trái qua qua.\nn: Từ phải qua trái.\nquit: Thoát!");
             ask = reader.readLine();
             if (ask == null || ask.toLowerCase().equals("quit")) break;
-            if (ask.toLowerCase().equals("n"))
-                root.setValue(maxValue(root, Integer.MIN_VALUE, Integer.MAX_VALUE, Node.letToRight));
             if (ask.toLowerCase().equals("y"))
+                root.setValue(maxValue(root, Integer.MIN_VALUE, Integer.MAX_VALUE, Node.letToRight));
+            if (ask.toLowerCase().equals("n"))
                 root.setValue(maxValue(root, Integer.MIN_VALUE, Integer.MAX_VALUE, Node.rightToLeft));
 
         }
